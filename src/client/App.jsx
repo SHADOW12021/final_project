@@ -99,18 +99,21 @@ function App() {
     switch (activeTab) {
       case 'myApplications':
         return (
-          <div>
+          <div >
             <JobApplicationTable 
               applications={applications} 
               handleDeleteApplication={handleDeleteApplication} 
               handleUpdateApplication={handleUpdateApplication} 
             />
-            <button 
-              onClick={() => setShowModal(true)} 
-              className="pure-button pure-button-primary"
-            >
-              Add New Application
-            </button>
+            <div style={{ display: 'flex', justifyContent: 'center',  }}>
+              <button  
+                onClick={() => setShowModal(true)} 
+                className="pure-button pure-button-primary"
+              >
+                Add New Application
+              </button>
+            </div>
+            
           </div>
         );
       case 'communityApplications':
@@ -128,12 +131,17 @@ function App() {
         <Login handleLogin={handleLogin} />
       ) : (
         <div id="applicationSection">
+          
           {/* tabs */}
           <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
           
           <div id="tabContent">
             {renderTabContent()}
           </div>
+          {/* logout */}
+          <button onClick={handleLogout} className="pure-button pure-button-primary" id='lout'>
+            Logout
+          </button>
 
           {/* pop up to add application */}
           {showModal && (
@@ -141,11 +149,6 @@ function App() {
               <JobApplicationForm handleAddApplication={handleAddApplication} />
             </Modal>
           )}
-
-          {/* logout */}
-          <button onClick={handleLogout} className="pure-button pure-button-primary">
-            Logout
-          </button>
         </div>
       )}
     </div>
